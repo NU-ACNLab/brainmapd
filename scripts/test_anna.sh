@@ -1,1 +1,0 @@
-echo "Anna says hi!"

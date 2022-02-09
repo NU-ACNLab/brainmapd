@@ -1,0 +1,3 @@
+1_subScripts_BrainMAPD_fmriprep.py   works to create separate subject scripts for each session.
+2_launch script is not working yet
+

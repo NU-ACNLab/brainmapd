@@ -43,7 +43,7 @@ def subj_writer(subject):
             for scan in os.listdir(subj_dir + "/" + session):
                 if(not scan[0] == "."):
                     for file in os.listdir(subj_dir + "/" + session + "/" + scan):
-                        line = subject + "," + session + "," + scan
+                        line = subject + "," + session + "," + file
                         writer.writerow([line])
                     
 
@@ -67,7 +67,8 @@ def create_audit_summary(partic):
                 line.append("1")
             else:
                 line.append("0")
-        writer.writerow(','.join(str(item) for item in line)) 
+        complete_line = partic + "," + ''.join(str(item) for item in line)
+        writer.writerow(complete_line) 
 
 
 

@@ -65,9 +65,6 @@ def main():
         all_files = csv.writer(audit_file, delimiter=',')
         all_files.writerow("subject, session, file")
 
-        summary = csv.writer(sum_file, delimiter=',')
-        summary.writerow(','.join(str(item) for item in ses_scan_list))
-
     for partic in partic_list:
         if(partic[0:3] == "sub"):
             subj_writer(partic)

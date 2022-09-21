@@ -54,8 +54,7 @@ def create_audit_summary(partic):
         reader = csv.reader(file_list, delimiter=",")
         #creates header row from our unique session + scan combo list
         writer.writerow(','.join(str(item) for item in ses_scan_list))
-
-        #for each partic, write row to check if they have all sets of files
+#for each partic, write row to check if they have all sets of files
 
 
 def main():
@@ -71,16 +70,12 @@ def main():
 
     for partic in partic_list:
         if(partic[0:3] == "sub"):
-            partic_files = subj_writer(partic)
+            subj_writer(partic)
 
     with open(summary_file, "a") as sum_file:
         summary = csv.writer(sum_file, delimiter=',')
         summary.writerow(','.join(str(item) for item in ses_scan_list))        
     create_audit_summary(partic)
-
-    
-    
-
 
 if __name__ == "__main__":
     main()

@@ -67,7 +67,7 @@ def create_audit_summary(partic):
                 line.append("1")
             else:
                 line.append("0")
-        complete_line = partic + "," + ''.join(str(item) for item in line)
+        complete_line = partic + "," + ','.join(str(item) for item in line)
         writer.writerow([complete_line]) 
 
 

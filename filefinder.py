@@ -7,9 +7,8 @@ output = "audit.csv"
 def subj_iterator():
 	#intiliaze list of participants 
 	participants = []
-	source_dir = "/projects/b1108/data/Georgia/foundations" 
 	#iterates through subject folders to grab the particpants
-	for subject in os.listdir(source_dir):
+	for subject in os.listdir(directory):
 		#make directory in dest_dir for the new subject
 		participants.append(subject)
 	return(participants)
@@ -65,6 +64,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-

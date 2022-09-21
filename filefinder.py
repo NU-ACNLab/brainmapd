@@ -85,7 +85,7 @@ def main():
 
     with open(summary_file, "w") as sum_file:
         summary = csv.writer(sum_file)
-        complete_line = "subject_id" + "," + ''.join(str(item) for item in ses_scan_list)
+        complete_line = "subject_id" + "," + ','.join(str(item) for item in ses_scan_list)
         summary.writerow([complete_line]) 
 
     for partic in partic_list:          

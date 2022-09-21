@@ -68,7 +68,7 @@ def create_audit_summary(partic):
             else:
                 line.append("0")
         complete_line = partic + "," + ''.join(str(item) for item in line)
-        writer.writerow(complete_line) 
+        writer.writerow([complete_line]) 
 
 
 
@@ -85,7 +85,8 @@ def main():
 
     with open(summary_file, "w") as sum_file:
         summary = csv.writer(sum_file)
-        summary.writerow(','.join(str(item) for item in ses_scan_list)) 
+        complete_line = "subject_id" + "," + ''.join(str(item) for item in ses_scan_list)
+        summary.writerow([complete_line]) 
 
     for partic in partic_list:          
         create_audit_summary(partic)

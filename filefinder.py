@@ -62,7 +62,10 @@ def main():
         writer.writerow("subject, session, file")
 
     for partic in partic_list:
-        subj_writer(partic)
+        if(partic[0:3] == sub):
+            partic_files = subj_writer(partic)
+
+    
     
 
 

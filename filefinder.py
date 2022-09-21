@@ -3,6 +3,7 @@ import csv
 
 directory = "/projects/b1108/data/BrainMAPD"
 output = "audit.csv"
+error_file = "audit_errors.csv"
 
 def subj_iterator():
 	#intiliaze list of participants 
@@ -43,10 +44,11 @@ def subj_writer(subject):
         #iterate through sessions and find files
         for session in os.listdir(subj_dir):
             for type in os.listdir(subj_dir + "/" + session):
-                for file in os.listdir(subj_dir + "/" + session+ "/" + type):
-                    line = subject + "," + session + "," + file
-                    writer.writerow(line)
-                    ses_files_list.append([session, type])
+                if(not type[0] == "."):
+                    for file in os.listdir(subj_dir + "/" + session + "/" + type):
+                        line = subject + "," + session + "," + file
+                        writer.writerow(line)
+                        ses_files_list.append([session, type])
     return ses_files_list
         
 

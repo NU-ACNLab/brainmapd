@@ -31,8 +31,11 @@ def subj_writer(subject):
     subj_dir = directory + "/" + subject
 
     #open csv
-    with open(output) as audit_file:
+    with open(output, "w") as audit_file:
         writer = csv.writer(audit_file, delimiter=',')
+
+    #intialize unique list to keep track of session/files
+    ses_files_list = []
 
     #iterate through sessions and find files
     for session in os.listdir(subj_dir):
@@ -40,6 +43,8 @@ def subj_writer(subject):
             for file in os.listdir(subj_dir + "/" + session+ "/" + type):
                 line = subject + "," + session + "," + file
                 writer.writerow(line)
+                ses_files_list.append([session, type])
+    return ses_files_list
         
 
 
@@ -48,7 +53,7 @@ def subj_writer(subject):
 def main():
     partic_list = subj_iterator()
 
-    with open(output) as audit_file:
+    with open(output, "w") as audit_file:
         writer = csv.writer(audit_file, delimiter=',')
         #write header
         writer.writerow("subject, session, file")

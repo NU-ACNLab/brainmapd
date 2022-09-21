@@ -40,13 +40,13 @@ def subj_writer(subject):
     with open(output, "w") as audit_file:
         writer = csv.writer(audit_file, delimiter=',')
 
-    #iterate through sessions and find files
-    for session in os.listdir(subj_dir):
-        for type in os.listdir(subj_dir + "/" + session):
-            for file in os.listdir(subj_dir + "/" + session+ "/" + type):
-                line = subject + "," + session + "," + file
-                writer.writerow(line)
-                ses_files_list.append([session, type])
+        #iterate through sessions and find files
+        for session in os.listdir(subj_dir):
+            for type in os.listdir(subj_dir + "/" + session):
+                for file in os.listdir(subj_dir + "/" + session+ "/" + type):
+                    line = subject + "," + session + "," + file
+                    writer.writerow(line)
+                    ses_files_list.append([session, type])
     return ses_files_list
         
 

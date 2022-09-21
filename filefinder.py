@@ -30,10 +30,6 @@ def subj_writer(subject):
     #define subject level directory
     subj_dir = directory + "/" + subject
 
-    #open csv
-    with open(output, "w") as audit_file:
-        writer = csv.writer(audit_file, delimiter=',')
-
     #intialize unique list to keep track of session/files
     ses_files_list = []
 

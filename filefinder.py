@@ -72,7 +72,7 @@ def main():
         if(partic[0:3] == "sub"):
             subj_writer(partic)
 
-    with open(summary_file, "a") as sum_file:
+    with open(summary_file, "w") as sum_file:
         summary = csv.writer(sum_file, delimiter=',')
         summary.writerow(','.join(str(item) for item in ses_scan_list))        
     create_audit_summary(partic)

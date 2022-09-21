@@ -38,7 +38,7 @@ def subj_writer(subject):
     ses_files_list = []
 
     #open csv
-    with open(output, "w") as audit_file:
+    with open(output, "a") as audit_file:
         writer = csv.writer(audit_file, delimiter=',')
 
         #iterate through sessions and find files

@@ -47,7 +47,7 @@ def subj_writer(subject):
                 if(not type[0] == "."):
                     for file in os.listdir(subj_dir + "/" + session + "/" + type):
                         line = subject + "," + session + "," + file
-                        writer.writerow(line)
+                        writer.writerow([line])
                         ses_files_list.append([session, type])
     return ses_files_list
         

@@ -44,8 +44,9 @@ def subj_writer(subject):
                         writer.writerow([line])
 
                         #check if we seen this scan type before for sessions
-                        if(not ses_scan_list.contains([session,])):
-                            ses_scan_list.append(session+"_"+scan)
+                        ses_scan = session + "_" + scan
+                        if(not ses_scan in ses_scan_list):
+                            ses_scan_list.append(ses_scan)
 
 
 def create_audit_summary(partic):

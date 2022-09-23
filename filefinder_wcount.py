@@ -10,8 +10,8 @@ import csv
 #initialize directories and files at the global level
 directory = "/projects/b1108/data/BrainMAPD"
 output = "audit_file_list.csv"
-summary_file = "audit_summary.csv"
-error_file = "audit_errors.csv"
+summary_file = "audit_summary_count.csv"
+error_file = "audit_errors_count.csv"
 
 #initialize a list that keeps track of unique session/scans pairings
 ses_scan_list = []
@@ -99,9 +99,9 @@ def create_audit_summary(partic):
             counter = 0
             for scan in scans:
                 if scan == ses_scan:
-                    line.append(counts[count])
+                    line.append(counts[counter])
                     found_scan = 1
-                count= count + 1
+                counter = counter + 1
             if found_scan == 0:
                 line.append(0)
         complete_line = partic + "," + ','.join(str(item) for item in line) #makes list to string

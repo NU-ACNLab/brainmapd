@@ -66,12 +66,13 @@ def subj_writer(subject):
                     file_pattern = subject + "_" + session
                     if(session == "ses-1" and scan == "anat"):
                         file_pattern = subject + "_" + session
-                        if(glob.glob(file_pattern + "*.json") and glob.glob(file_pattern + "*.nii.gz")):
+
+                        if(bool(glob.glob("*.json")) and bool(glob.glob("*.nii.gz"))):
                             writer2.writerow([subject, session, scan, "1"])
                         else: 
                             writer2.writerow([subject, session, scan, "0"])
                     if(session == "ses-1" and scan == "func"):
-                        if((len(glob.glob("*FEAR*.json")) > 1) and  len(glob.glob("*FEAR*.nii.gz")) > 1):
+                        if((len(glob.glob("*FEAR*.json")) > 1) and len(glob.glob("*FEAR*.nii.gz")) > 1):
                             writer2.writerow([subject, session, scan, "1"])
                         else: 
                             writer2.writerow([subject, session, scan, "0"])

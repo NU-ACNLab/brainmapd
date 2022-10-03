@@ -63,17 +63,42 @@ def subj_writer(subject):
                     #initializes file count var to make sure we have a complete
                     #set of files for each partcip
                     file_count = 0
-                    if(session == "ses-1" and scan == "anat"):
-                        path = directory + "/" + subject + "/" + session + "/" + scan + "/"
-                        if(bool(glob.glob(path + "*.json")) and bool(glob.glob(path + "*.nii.gz"))):
+                    path = directory + "/" + subject + "/" + session + "/" + scan + "/"
+                    #session 1
+                    if(session == "ses-1" and scan == "anat" and bool(glob.glob(path + "*.json")) and \
+                        bool(glob.glob(path + "*.nii.gz"))):
                             writer2.writerow([subject, session, scan, "1"])
-                        else: 
-                            writer2.writerow([subject, session, scan, "0"])
-                    if(session == "ses-1" and scan == "func"):
-                        if((len(glob.glob("*FEAR*.json")) > 1) and len(glob.glob("*FEAR*.nii.gz")) > 1):
+                    
+                    elif(session == "ses-1" and scan == "func" and \
+                        (len(glob.glob(path + "*FEAR*.json")) > 1) and len(glob.glob(path + "*FEAR*.nii.gz")) > 1):
                             writer2.writerow([subject, session, scan, "1"])
-                        else: 
+                    #session 2
+                    elif(session == "ses-2" and scan == "anat" and bool(glob.glob(path + "*.json")) and \
+                        bool(glob.glob(path + "*.nii.gz"))):
+                            writer2.writerow([subject, session, scan, "1"])
+
+                    elif(session == "ses-2" and scan == "func" and \
+                        (len(glob.glob(path + "*FEAR*.json")) > 3) and len(glob.glob(path + "*FEAR*.nii.gz")) > 3):
+                            writer2.writerow([subject, session, scan, "1"])
+                    #session 3
+                    elif(session == "ses-3" and scan == "anat" and bool(glob.glob(path + "*.json")) and \
+                        bool(glob.glob(path + "*.nii.gz"))):
+                            writer2.writerow([subject, session, scan, "1"])
+
+                    elif(session == "ses-3" and scan == "func" and \
+                        (len(glob.glob(path + "*FEAR*.json")) > 1) and len(glob.glob(path + "*FEAR*.nii.gz")) > 1):
+                            writer2.writerow([subject, session, scan, "1"])
+                    #session 4
+                    elif(session == "ses-4" and scan == "anat" and bool(glob.glob(path + "*.json")) and \
+                        bool(glob.glob(path + "*.nii.gz"))):
+                            writer2.writerow([subject, session, scan, "1"])
+
+                    elif(session == "ses-4" and scan == "func" and \
+                        (len(glob.glob(path + "*FEAR*.json")) > 3) and len(glob.glob(path + "*FEAR*.nii.gz")) > 3):
+                            writer2.writerow([subject, session, scan, "1"])
+                    else: 
                             writer2.writerow([subject, session, scan, "0"])
+
                     for file in os.listdir(subj_dir + "/" + session + "/" + scan):
                         line = subject + "," + session + "," + file
                         writer.writerow([line]) #writes row for each scan file
@@ -124,6 +149,10 @@ def create_audit_summary(partic):
 
 def main():
     partic_list = subj_iterator()
+
+    with open(file_checker, "w") as file2:
+        writer = csv.writer(file2, delimiter=",")
+        writer.writerow("subject, session, scan, yes_no")
 
     #create header for the list of files file.
     with open(output, "w") as audit_file:

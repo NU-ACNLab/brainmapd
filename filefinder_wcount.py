@@ -6,12 +6,15 @@ __date__     = "9/22/22"
 
 import os
 import csv
+import glob
 
 #initialize directories and files at the global level
 directory = "/projects/b1108/data/BrainMAPD"
 output = "audit_file_list.csv"
 summary_file = "audit_summary_count.csv"
 error_file = "audit_errors_count.csv"
+file_checker = "subj_file_check.csv"
+
 
 #initialize a list that keeps track of unique session/scans pairings
 ses_scan_list = []
@@ -48,8 +51,9 @@ def subj_writer(subject):
     subj_dir = directory + "/" + subject
 
     #open csv
-    with open(output, "a") as audit_file:
+    with open(output, "a") as audit_file, open(file_checker, "a") as file2:
         writer = csv.writer(audit_file, delimiter=',')
+        writer2 = csv.writer(file2, delimiter=',')
         #list that keeps track of what scan this partic has
         scans = []
         #iterate through sessions and find files
@@ -59,6 +63,27 @@ def subj_writer(subject):
                     #initializes file count var to make sure we have a complete
                     #set of files for each partcip
                     file_count = 0
+                    file_pattern = subject + "_" + session
+                    if(session = "ses-1" and scan = "anat"):
+                        file_pattern = subject + "_" + session
+                        if(glob.glob(file_pattern + "*.json") and glob.glob(file_pattern + "*.nii.gz")):
+                            writer2.writerow([subject, session, scan, "1"])
+                        else: 
+                            writer2.writerow([subject, session, scan, "0"])
+                    if(session = "ses-1" and scan = "func"):
+                        if((len(glob.glob("*FEAR*.json")) > 1) and  len(glob.glob("*FEAR*.nii.gz")) > 1):
+                            writer2.writerow([subject, session, scan, "1"])
+                        else: 
+                            writer2.writerow([subject, session, scan, "0"])
+                        
+
+
+
+
+
+
+
+
                     for file in os.listdir(subj_dir + "/" + session + "/" + scan):
                         line = subject + "," + session + "," + file
                         writer.writerow([line]) #writes row for each scan file

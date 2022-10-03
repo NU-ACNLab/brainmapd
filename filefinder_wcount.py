@@ -63,11 +63,9 @@ def subj_writer(subject):
                     #initializes file count var to make sure we have a complete
                     #set of files for each partcip
                     file_count = 0
-                    file_pattern = subject + "_" + session
                     if(session == "ses-1" and scan == "anat"):
-                        file_pattern = subject + "_" + session
-
-                        if(bool(glob.glob("*.json")) and bool(glob.glob("*.nii.gz"))):
+                        path = directory + "/" + subject + "/" + session + "/" + scan + "/"
+                        if(bool(glob.glob(path + "*.json")) and bool(glob.glob(path + "*.nii.gz"))):
                             writer2.writerow([subject, session, scan, "1"])
                         else: 
                             writer2.writerow([subject, session, scan, "0"])

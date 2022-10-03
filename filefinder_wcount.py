@@ -75,15 +75,6 @@ def subj_writer(subject):
                             writer2.writerow([subject, session, scan, "1"])
                         else: 
                             writer2.writerow([subject, session, scan, "0"])
-                        
-
-
-
-
-
-
-
-
                     for file in os.listdir(subj_dir + "/" + session + "/" + scan):
                         line = subject + "," + session + "," + file
                         writer.writerow([line]) #writes row for each scan file

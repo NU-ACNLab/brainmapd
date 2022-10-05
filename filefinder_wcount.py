@@ -65,12 +65,20 @@ def subj_writer(subject):
                     file_count = 0
                     path = directory + "/" + subject + "/" + session + "/" + scan + "/"
                     #session 1
+                    fear_j = len(glob.glob(path + "*FEAR*.json"))
+                    fear_n = len(glob.glob(path + "*FEAR*.nii.gz"))
+                    mid_j = len(glob.glob(path + "*MID*.json"))
+                    mid_n = len(glob.glob(path + "*MID*.nii.gz"))
+                    rest_j = len(glob.glob(path + "*REST*.json"))
+                    rest_n = len(glob.glob(path + "*REST*.nii.gz"))
+
+                    #session 1
                     if(session == "ses-1" and scan == "anat" and bool(glob.glob(path + "*.json")) and \
                         bool(glob.glob(path + "*.nii.gz"))):
                             writer2.writerow([subject, session, scan, "1"])
                     
                     elif(session == "ses-1" and scan == "func" and \
-                        (len(glob.glob(path + "*FEAR*.json")) > 1) and len(glob.glob(path + "*FEAR*.nii.gz")) > 1):
+                        fear_j > 1 and fear_n > 1):
                             writer2.writerow([subject, session, scan, "1"])
                     #session 2
                     elif(session == "ses-2" and scan == "anat" and bool(glob.glob(path + "*.json")) and \
@@ -78,7 +86,7 @@ def subj_writer(subject):
                             writer2.writerow([subject, session, scan, "1"])
 
                     elif(session == "ses-2" and scan == "func" and \
-                        (len(glob.glob(path + "*FEAR*.json")) > 3) and len(glob.glob(path + "*FEAR*.nii.gz")) > 3):
+                        fear_j > 0  and fear_n > 0 and mid_j > 1 and mid_n > 1 and rest_j > 0 and rest_n > 0):
                             writer2.writerow([subject, session, scan, "1"])
                     #session 3
                     elif(session == "ses-3" and scan == "anat" and bool(glob.glob(path + "*.json")) and \
@@ -86,7 +94,7 @@ def subj_writer(subject):
                             writer2.writerow([subject, session, scan, "1"])
 
                     elif(session == "ses-3" and scan == "func" and \
-                        (len(glob.glob(path + "*FEAR*.json")) > 1) and len(glob.glob(path + "*FEAR*.nii.gz")) > 1):
+                        fear_j > 1 and fear_n > 1):
                             writer2.writerow([subject, session, scan, "1"])
                     #session 4
                     elif(session == "ses-4" and scan == "anat" and bool(glob.glob(path + "*.json")) and \
@@ -94,7 +102,7 @@ def subj_writer(subject):
                             writer2.writerow([subject, session, scan, "1"])
 
                     elif(session == "ses-4" and scan == "func" and \
-                        (len(glob.glob(path + "*FEAR*.json")) > 3) and len(glob.glob(path + "*FEAR*.nii.gz")) > 3):
+                        fear_j > 0  and fear_n > 0 and mid_j > 1 and mid_n > 1 and rest_j > 0 and rest_n > 0):
                             writer2.writerow([subject, session, scan, "1"])
                     else: 
                             writer2.writerow([subject, session, scan, "0"])
